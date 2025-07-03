@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Handle Click Events</title>
+  <style>
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Way 1: Inline HTML onclick -->
+  <button onclick="handleClickInline(this, 'Way 1')">Way 1</button>
+
+  <!-- Way 2: element.onclick -->
+  <button id="way2">Way 2</button>
+
+  <!-- Way 3: addEventListener -->
+  <button id="way3">Way 3</button>
+
+  <script>
+    // Common function to handle all button clicks
+    function handleClick(button, label) {
+      console.log(`${label} clicked!`);
+      const originalColor = button.style.backgroundColor;
+      button.style.backgroundColor = "red";
+
+      setTimeout(() => {
+        button.style.backgroundColor = originalColor;
+      }, 1000);
+    }
+
+    // Way 1: Inline onclick
+    function handleClickInline(button, label) {
+      handleClick(button, label);
+    }
+
+    // Way 2: element.onclick
+    const btn2 = document.getElementById("way2");
+    btn2.onclick = function () {
+      handleClick(this, "Way 2");
+    };
+
+    // Way 3: addEventListener
+    const btn3 = document.getElementById("way3");
+    btn3.addEventListener("click", function () {
+      handleClick(this, "Way 3");
+    });
+  </script>
+
+</body>
+</html>
